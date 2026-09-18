@@ -1,0 +1,88 @@
+{
+    "signup":{
+        "title":"Welcome to Tasks Manager",
+        "subtitle":"Signup",
+        "placeholder":{
+            "name":"Enter your Name",
+            "email":"Enter your Email",
+            "password":"Enter your Password"
+        },
+        
+        "error":{
+            "EMPTY":"{field} can't be empty",
+            "EMAIL":"Invalid email address",
+            "TOO_LONG":"{field} It must not exceed 50 characters.",
+            "PASSWORD_INVALID":"Password At least 8 characters, including an uppercase letter, a lowercase letter, a number, and a symbol."
+        },
+        "haveAccount":"Already have account?",
+        "signinLink":"Signin"
+    },
+    "signin":{
+        "title":"Welcome to Tasks Manager",
+        "subtitle":"Signin",
+        "placeholder":{
+            "email":"Enter your Email",
+            "password":"Enter your Password"
+        },
+        
+        "error":{
+            "EMPTY":"{field} can't be empty",
+            "EMAIL":"Invalid email address",
+            "TOO_LONG":"{field} It must not exceed 50 characters.",
+            "PASSWORD_INVALID":"Password At least 8 characters, including an uppercase letter, a lowercase letter, a number, and a symbol."
+        },
+        "haveAccount":"Don't have account?",
+        "signinLink":"Signup"
+    },
+    "sidebar":{
+        "title":"Task Manager",
+        "tasks":"Tasks List",
+        "newTask":"New Task",
+        "currentTask":"Your Task"
+    },
+    "newTask":{
+        "title":"Add New Task",
+        "fields":{
+            "title":"Task title",
+            "description":"Task Description",
+            "mentioned":"Mentioned Users"
+        },
+        "submit":"Add Task",
+        "cancel":"Cancel",
+        "errors":{
+            "STRING":"{field} Must  be a string",
+            "EMPTY":"{field} Can't be empty"
+        }
+    },
+    "task":{
+        "PENDING":"PENDING",
+        "IN_PROGRESS":"IN_PROGRESS",
+        "COMPLETED":"COMPLETED",
+        "notFound":"Task not found.",
+        "backBtn":"Back",
+        "pageTitle":"Task Details",
+        "addSolve":"Add Solution",
+        "description":"Description",
+        "noDescription":"No description provided.",
+        "creator":"Created by",
+        "createDate":"Create at",
+        "updateDate":"Last update",
+        "mentioned":"Mentioned users",
+        "noMentioned":"No mentioned users.",
+        "fields":{
+            "title":"Solution Title",
+            "description":"Solution Description",
+            "status":"Task Status",
+            "submitBtn":"Submit",
+            "cancelBtn":"Cancel"
+        },
+        "solutions":"Solutions",
+        "by":"By: ",
+        "open":"Open",
+        "members":"Members",
+        "errors":{
+            "STRING":"{field} Must  be a string",
+            "EMPTY":"{field} Can't be empty"
+        }
+    }
+}
