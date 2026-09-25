@@ -25,47 +25,48 @@ model User {
   sessions       Session[]
   accounts       Account[]
 
-  createdTasks   Task[]         @relation("TaskCreator")
-  mentionedTasks Task[]         @relation("TaskMentions")
-  solutions      TaskSolution[] @relation("SolutionAuthor")
+  createdTasks   Task[]         @relation("TaskCreator") 
+  comments      Comment[] @relation("commentAuthor")
+  lists      List[] @relation("ListCreator")
 
   @@map("user")
 }
 
-enum TaskStatus {
-  PENDING
-  IN_PROGRESS
-  COMPLETED
-}
-
-
 model Task {
   id             String         @id @default(cuid())
   title          String
-  description    String
-
+  description    String?
   creatorId      String
-  creator        User           @relation("TaskCreator", fields: [creatorId], references: [id])
-  status         TaskStatus         @default(PENDING)
-  mentionedUsers User[]         @relation("TaskMentions")
-  solutions      TaskSolution[]
-
+  creator        User           @relation("TaskCreator", fields: [creatorId], references: [id], onDelete: Cascade)
+  isDone         Boolean        @default(false)     
+  Comments      Comment[]       
   createdAt      DateTime       @default(now())
   updatedAt      DateTime       @updatedAt
+  listId         String
+  list   List   @relation(fields: [listId], references: [id], onDelete: Cascade)
 }
 
-model TaskSolution {
+
+
+
+model List {
+  id          String    @id  @default(cuid())
+  name        String    @unique
+  Tasks       Task[]    
+  creatorId   String
+  creator     User     @relation("ListCreator", fields: [creatorId], references: [id], onDelete: Cascade)
+  isPrivate   Boolean @default(false)
+}
+
+
+model Comment {
   id          String   @id @default(cuid())
-  title       String
   description String
   createdAt   DateTime @default(now())
-
   taskId      String
-  task        Task     @relation(fields: [taskId], references: [id])
-
+  task        Task     @relation(fields: [taskId], references: [id], onDelete: Cascade)
   authorId    String
-  author      User     @relation("SolutionAuthor", fields: [authorId], references: [id])
-
+  author      User     @relation("commentAuthor", fields: [authorId], references: [id], onDelete: Cascade) 
   @@index([taskId, createdAt])
   @@index([authorId])
 }

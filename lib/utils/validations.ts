@@ -13,21 +13,33 @@ export const signinValidation = z.object({
 })
 
 
+export const addListValidation = z.object({
+    name:z.string("STRING").min(1,"EMPTY").max(100,"TOO_LONG"),
+    isPrivate:z.boolean("BOOLEAN")
+})
+
 export const addTaskValidation = z.object({
-    title:z.string("STRING").min(1,"EMPTY"),
-    description:z.string("STRING").min(1,"EMPTY"),
+    title:z.string("STRING").min(1,"EMPTY").max(100,"TOO_LONG"),
     creatorId:z.string("STRING").min(1,"EMPTY"),
-    mentionedUsers:z.array(z.string()).min(1, "EMPTY")
+    listId:z.string("STRING").min(1,"EMPTY")
 })
 
 
-export const addSolveValidation = z.object({
-    title:z.string("STRING").min(1,"EMPTY"),
-    description:z.string("STRING").min(1,"EMPTY"),
-    taskId:z.string("STRING").min(1,"EMPTY"),
-    authorId:z.string("STRING").min(1,"EMPTY"),
-    status:z.enum(['COMPLETED','IN_PROGRESS','PENDING'],"EMPTY")
-})
+// export const addTaskValidation = z.object({
+//     title:z.string("STRING").min(1,"EMPTY"),
+//     description:z.string("STRING").min(1,"EMPTY"),
+//     creatorId:z.string("STRING").min(1,"EMPTY"),
+//     mentionedUsers:z.array(z.string()).min(1, "EMPTY")
+// })
+
+
+// export const addSolveValidation = z.object({
+//     title:z.string("STRING").min(1,"EMPTY"),
+//     description:z.string("STRING").min(1,"EMPTY"),
+//     taskId:z.string("STRING").min(1,"EMPTY"),
+//     authorId:z.string("STRING").min(1,"EMPTY"),
+//     status:z.enum(['COMPLETED','IN_PROGRESS','PENDING'],"EMPTY")
+// })
 
 
 

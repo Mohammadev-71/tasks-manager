@@ -18,8 +18,8 @@
         "signinLink":"Signin"
     },
     "signin":{
-        "title":"Welcome to Tasks Manager",
-        "subtitle":"Signin",
+        "title":"Welcome Back!",
+        "subtitle":"Sign in to pick up where you left off.",
         "placeholder":{
             "email":"Enter your Email",
             "password":"Enter your Password"
@@ -34,55 +34,43 @@
         "haveAccount":"Don't have account?",
         "signinLink":"Signup"
     },
+    "home":{
+        "pageTitle":"Home Page",
+        "addList":{
+            "addBtn":"Add New List",
+            "submitBtn":"Add List",
+            "placeholder":"Enter List Name",
+            "isPrivate":"Private List"
+        },
+        "addTask":{
+            "addBtn":"Add Task",
+            "placeholder":"Enter Task Name"
+        },
+        "NOT_OWNER":"You don’t have permission to delete this list.",
+        "logoutBtn":"Signout",
+        "confirmDeleting":"Are you sure you want to delete this item?"
+    },
     "sidebar":{
         "title":"Task Manager",
-        "tasks":"Tasks List",
+        "tasks":"Tasks Lists",
         "newTask":"New Task",
         "currentTask":"Your Task"
     },
-    "newTask":{
-        "title":"Add New Task",
-        "fields":{
-            "title":"Task title",
-            "description":"Task Description",
-            "mentioned":"Mentioned Users"
-        },
-        "submit":"Add Task",
-        "cancel":"Cancel",
-        "errors":{
-            "STRING":"{field} Must  be a string",
-            "EMPTY":"{field} Can't be empty"
-        }
-    },
-    "task":{
-        "PENDING":"PENDING",
-        "IN_PROGRESS":"IN_PROGRESS",
-        "COMPLETED":"COMPLETED",
-        "notFound":"Task not found.",
-        "backBtn":"Back",
+    
+    "taskDetails":{
         "pageTitle":"Task Details",
-        "addSolve":"Add Solution",
+        "addComment":"Add Comment",
         "description":"Description",
-        "noDescription":"No description provided.",
         "creator":"Created by",
         "createDate":"Create at",
         "updateDate":"Last update",
-        "mentioned":"Mentioned users",
-        "noMentioned":"No mentioned users.",
+        "timeline":"Timeline",
+        "backLink":"Go Back",
         "fields":{
-            "title":"Solution Title",
-            "description":"Solution Description",
-            "status":"Task Status",
-            "submitBtn":"Submit",
+            "title":"Enter Task title",
+            "description":"Enter Task Description",
+            "submitBtn":"Save",
             "cancelBtn":"Cancel"
-        },
-        "solutions":"Solutions",
-        "by":"By: ",
-        "open":"Open",
-        "members":"Members",
-        "errors":{
-            "STRING":"{field} Must  be a string",
-            "EMPTY":"{field} Can't be empty"
         }
     }
 }

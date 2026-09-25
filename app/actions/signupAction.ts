@@ -27,18 +27,27 @@ export default async function signupAction(prevState: any, formData: FormData){
             
         })
 
-
         return({
             success:true,
-            message:"login successfully"
+            message:"login successfully",
         })
 
     } catch (error) {
         console.log(error)
 
+        if(error?.status==="UNPROCESSABLE_ENTITY"){
+
+            return({
+                success:false,
+                message:"UNPROCESSABLE_ENTITY"
+            })
+
+        }
+
+        
         return({
             success:false,
-            message:error
+            message:"something went wrong pleas try again"
         })
     }
 

@@ -1,50 +1,43 @@
-'use server'
 import { prisma } from "@/lib/prisma";
-import { auth } from "@/lib/auth";
-import { headers } from "next/headers";
+import authentication from "./authentication";
 
 
 
 export default async function getTaskDetails({taskId}:{taskId:string}){
 
+    const auth = await authentication()
+    if(!auth.success){
+        return(auth)
+    }
+
     try {
-        const session = await auth.api.getSession({
-            headers: await headers()
-        })
-
-        
-
-        const userId = session?.user.id
-
-        if(!userId || !session){
-            return({
-                success:false,
-                message:"UNAUTHORIZED"
-            })
-        }
-        const task = await prisma.task.findUnique({
+        const taskDetails = await prisma.task.findUnique({
             where:{id:taskId},
             include:{
-                mentionedUsers:true,
-                creator:true,
-                solutions:{
+                Comments:{
                     include:{
                         author:true
                     }
+                },
+                creator:{
+                    select:{
+                        id:true,
+                        name:true,
+                        email:true
+                    }
                 }
-            },
+            }
         })
 
         return({
             success:true,
-            task:task
+            task:taskDetails
         })
     } catch (error) {
         console.log(error)
         return({
             success:false,
-            message:"something went wrong, pleas try again"
+            message:"something went wrong please try again"
         })
     }
-    
 }

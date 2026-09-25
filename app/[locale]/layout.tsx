@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { NextIntlClientProvider } from "next-intl";
 import { ThemeProvider } from "./components/Theme-provider";
-import Sidebar from "./components/Sidebar";
 
 
 export const metadata: Metadata = {
@@ -24,7 +23,7 @@ export default async function RootLayout({ children, params }: LayoutProps) {
       suppressHydrationWarning
       lang={locale}
       dir={locale==="en"?"ltr":"rtl"}
-      className={`h-full antialiased bg-gray-50 dark:bg-zinc-900`}
+      className={`h-full antialiased bg-white dark:bg-zinc-900`}
     > 
       <body className="min-h-full flex ">
         <ThemeProvider
@@ -34,11 +33,7 @@ export default async function RootLayout({ children, params }: LayoutProps) {
           disableTransitionOnChange
         >
           <NextIntlClientProvider>
-            <div className="min-h-full min-w-screen flex">
-              <Sidebar/>
-              {children}
-            </div>
-            
+            {children}
           </NextIntlClientProvider>
         </ThemeProvider>
         
