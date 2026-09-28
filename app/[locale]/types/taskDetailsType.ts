@@ -1,7 +1,7 @@
 export type TaskDetailsType = {
   id: string;
   title: string;
-  description: string;
+  description: string | null;
   isDone: boolean;
   listId: string;
   createdAt: Date;
@@ -9,17 +9,19 @@ export type TaskDetailsType = {
   creatorId: string;
   creator: {
     id: string;
-    name: string;
+    name: string | null;
     email: string;
   };
-  Comments: [
-    {
-      id?: string;
-      description?: string;
-      createdAt?: Date;
-      updatedAt?: Date;
-      taskId?: string;
-      authorId?: string
-    },
-  ];
+  Comments: Array<{
+    id?: string;
+    description?: string | null;
+    createdAt?: Date;
+    updatedAt?: Date;
+    taskId?: string;
+    authorId?: string;
+    author?: {
+      name?: string | null;
+      email?: string | null;
+    };
+  }>;
 };

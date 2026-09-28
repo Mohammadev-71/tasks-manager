@@ -25,7 +25,7 @@ export default function AddListFrom({
 
 
   useEffect(() => {
-    if (state.success && state?.list) {
+    if (state?.success && 'list' in state && state.list) {
       addList(state?.list);
       setIsAddList(false)
     }

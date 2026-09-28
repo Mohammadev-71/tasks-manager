@@ -1,13 +1,18 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
+import { TaskDetailsType } from "@/app/[locale]/types/taskDetailsType";
 import authentication from "./authentication";
+
+export type EditTaskActionResult =
+  | { success: true; task: TaskDetailsType }
+  | { success: false; message: string };
 
 export default async function editTaskAction(
   taskId: string,
   prevState: any,
   formData: FormData,
-) {
+): Promise<EditTaskActionResult> {
   const auth = await authentication();
 
   if (!auth.success) {
@@ -38,16 +43,21 @@ export default async function editTaskAction(
       include: {
         creator: true,
         Comments: {
-          include:{
-            author:true
-          }
+          include: {
+            author: {
+              select: {
+                name: true,
+                email: true,
+              },
+            },
+          },
         },
       },
     });
 
     return {
       success: true,
-      task: result,
+      task: result as TaskDetailsType,
     };
   } catch (error) {
     console.log(error);

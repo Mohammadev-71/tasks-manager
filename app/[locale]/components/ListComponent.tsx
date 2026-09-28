@@ -46,7 +46,7 @@ export default function ListComponent({
 
   useEffect(() => {
     const addTaskToList = () => {
-      if (state.success && state?.task) {
+      if (state.success && "task"in state && state?.task) {
         addTask(state?.task);
         setIsAddTask(false);
       }

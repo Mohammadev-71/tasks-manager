@@ -5,7 +5,7 @@ import { TaskType } from "../types/taskType";
 
 type TaskStore = {
   tasks:TaskType[];
-  setTask:(task:TaskType)=>void;
+  setTask:(task:TaskType[])=>void;
   addTask:(newTask:TaskType)=>void;
   reorderTask:(taskId:string,listId:string)=>void;
   deleteTask:(taskId:string)=>void;

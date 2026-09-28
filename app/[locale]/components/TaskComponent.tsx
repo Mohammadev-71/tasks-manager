@@ -16,16 +16,14 @@ export default function TaskComponent({ task }: { task: TaskType }) {
   const t = useTranslations("home");
   const deleteTask = useTasks((state) => state.deleteTask);
   const updateTask = useTasks((state) => state.updateTask);
-  
-  
+
   const toggleDoneHandler = async (taskId: string) => {
-    const result = await toggleDoneAction({ taskId, isDone:task?.isDone });
-    if(!result.success){
-      return
+    const result = await toggleDoneAction({ taskId, isDone: task?.isDone });
+    if (!result.success || !("task" in result)) {
+      return;
     }
-    
+
     updateTask(result.task);
-    
   };
 
   const deleteHandler = async ({ id }: { id: string }) => {
@@ -43,10 +41,7 @@ export default function TaskComponent({ task }: { task: TaskType }) {
       className="flex w-full flex-col rounded-lg border border-slate-200 bg-white p-3 shadow-sm dark:border-slate-700 dark:bg-slate-800"
     >
       <div className="flex items-start gap-2">
-
         <div className="flex w-full items-center gap-2">
-
-
           <button
             className="text-sky-700"
             onClick={() => {
@@ -60,7 +55,6 @@ export default function TaskComponent({ task }: { task: TaskType }) {
             )}
           </button>
 
-
           <Link href={`/task-details/${task.id}`} className="min-w-0 flex-1">
             <p
               className={`truncate text-sm font-medium text-slate-700 dark:text-slate-100 ${task.isDone ? "text-gray-500 line-through dark:text-slate-400" : ""}`}
@@ -68,8 +62,6 @@ export default function TaskComponent({ task }: { task: TaskType }) {
               {task.title}
             </p>
           </Link>
-
-
         </div>
 
         <button
@@ -83,21 +75,14 @@ export default function TaskComponent({ task }: { task: TaskType }) {
       </div>
 
       <div className="mt-3 flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400">
-
-
         {task.description && <GrTextAlignFull size={12} />}
 
-
-        {task.Comments?.length > 0 && (
-
+        {(task.Comments?.length ?? 0) > 0 && (
           <div className="flex items-center gap-1">
             <TfiCommentAlt size={12} />
-            {task.Comments.length}
+            {task?.Comments?.length ?? 0}
           </div>
-
         )}
-
-
       </div>
     </div>
   );

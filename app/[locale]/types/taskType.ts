@@ -1,25 +1,20 @@
-
-
-
 export type TaskType = {
   id: string;
   title: string;
-  description: string;
+  description: string | null;
   isDone: boolean;
   createdAt: Date;
   updatedAt: Date;
   creatorId: string;
   listId: string;
-  Comments: [
-    {
-      id:string;
-      description: string;
-      authorId:string;
-      author:{
-        name:string;
-        email:string
-        id:string
-      }
-    },
-  ];
+  Comments?: Array<{
+    id?: string;
+    description?: string | null;
+    authorId?: string;
+    author?: {
+      name?: string;
+      email?: string;
+      id?: string;
+    };
+  }>;
 };

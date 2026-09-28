@@ -6,10 +6,10 @@ export type ListType = {
   name: string;
   creatorId: string;
   isPrivate: boolean;
-  _count: {
-    Tasks: number;
+  _count?: {
+    Tasks?: number;
   };
-  creator: {
-    name: string;
+  creator?: {
+    name?: string;
   };
 };

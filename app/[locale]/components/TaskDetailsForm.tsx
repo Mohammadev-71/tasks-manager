@@ -4,7 +4,7 @@ import { FaCheckCircle } from "react-icons/fa";
 import { GrTextAlignFull } from "react-icons/gr";
 import { TfiCommentAlt } from "react-icons/tfi";
 import { useActionState, useEffect, useState } from "react";
-import editTaskAction from "@/app/actions/editTaskAction";
+import editTaskAction, { EditTaskActionResult } from "@/app/actions/editTaskAction";
 import { TaskDetailsType } from "../types/taskDetailsType";
 import toggleDoneAction from "@/app/actions/toggleDoneAction";
 import TextArea from "./TextArea";
@@ -21,13 +21,13 @@ export default function TaskDetailsForm({
   const [isEditingComment, setIsEditingComment] = useState<boolean>(false);
   const [task, setTask] = useState<TaskDetailsType>(taskDetails);
   const t = useTranslations("taskDetails");
-  const [state, actionForm, isPending] = useActionState(
+  const [state, actionForm, isPending] = useActionState<EditTaskActionResult, FormData>(
     editTaskAction.bind(null, task.id),
     { success: false, message: "" },
   );
 
   useEffect(() => {
-    if (state?.success && state?.task) {
+    if (state?.success && state.task) {
       setTask(state.task);
       setIsEditingComment(false);
       setIsEditingDesc(false);
