@@ -16,7 +16,7 @@ export default async function authentication(){
             })
         }
     return({
-        success:true,
+        success:true as const ,
         user:session.user
     })
 }

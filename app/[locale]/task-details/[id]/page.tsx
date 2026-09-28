@@ -10,6 +10,9 @@ export default async function TaskDetails({
 }) {
   const { id } = await params;
   const task = await getTaskDetails({ taskId: id });
+  if(!("task" in task)){
+    return
+  }
   if (!task?.task) {
     return;
   }
