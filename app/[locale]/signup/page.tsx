@@ -18,8 +18,10 @@ const initialState = {
 
 type ActionResponse = {
   message?: {
-    message: string;
-    path: string[];
+    message: string | {
+      message:string
+    };
+    path?: string[];
   }[];
 };
 
