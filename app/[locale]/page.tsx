@@ -34,7 +34,10 @@ export default function Home() {
           return;
         }
 
-        if ("lists" in listsResult && "tasks" in tasksResult) {
+        if (
+          listsResult.lists !== undefined &&
+          tasksResult.tasks !== undefined
+        ) {
           setLists(listsResult.lists);
           setTasks(tasksResult.tasks);
         }
