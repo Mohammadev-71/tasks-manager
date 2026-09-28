@@ -11,7 +11,7 @@ export default async function authentication(){
     
         if(!session|| !session.user){
             return({
-                success:false,
+                success:false as const,
                 message:"UNAUTHORIZED"
             })
         }
