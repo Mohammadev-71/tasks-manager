@@ -32,11 +32,12 @@ export default function Signin() {
     initialState,
   );
   const [data, setData] = useState({ email: "", password: "" });
+  
   if (
     !state.success &&
-    state?.message?.message === "Invalid email or password"
+    state?.message?.message=== "Invalid email or password"
   ) {
-    alert(t(`error.${state?.message?.message}`));
+    alert(t("error.Invalid email or password"));
   }
   if (state.success) {
     redirect("/");
