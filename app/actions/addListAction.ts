@@ -41,7 +41,7 @@ export default async function addListAction(
       success: true,
       list: newList,
     };
-  } catch (error) {
+  } catch (error:any) {
     console.log(error);
     if (error?.code === "P2002") {
       return {

@@ -10,6 +10,7 @@ export default async function TaskDetails({
 }) {
   const { id } = await params;
   const task = await getTaskDetails({ taskId: id });
+  if(!task?.task){ return}
   const t = await getTranslations("taskDetails")
   return (
     <main className="w-full h-full min-h-screen bg-gradient-to-r from-sky-950 to-slate-800 pt-20 relative">

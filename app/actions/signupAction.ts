@@ -32,7 +32,7 @@ export default async function signupAction(prevState: any, formData: FormData){
             message:"login successfully",
         })
 
-    } catch (error) {
+    } catch (error:any) {
         console.log(error)
 
         if(error?.status==="UNPROCESSABLE_ENTITY"){

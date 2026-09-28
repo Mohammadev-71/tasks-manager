@@ -243,12 +243,12 @@ export default function TaskDetailsForm({ taskDetails }: { taskDetails: TaskDeta
                   </p>
 
                   <p className="mt-1 text-sm font-medium text-slate-800 dark:text-slate-100">
-                    {comment?.author?.name}
+                    {comment?.author?.name ? comment?.author?.name:"---"}
                   </p>
 
                   <p className="mt-2 text-xs text-slate-500 dark:text-slate-400 flex items-center gap-2">
-                    <span>{new Date(comment?.createdAt)?.toLocaleTimeString()}</span> {" | "}
-                    <span>{new Date(comment?.createdAt)?.toLocaleDateString()}</span>
+                    <span>{comment?.createdAt ? new Date(comment?.createdAt)?.toLocaleTimeString() : "---"}</span> {" | "}
+                    <span>{comment?.createdAt? new Date(comment?.createdAt)?.toLocaleDateString():"---"}</span>
                   </p>
 
                 </div>

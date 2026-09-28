@@ -13,7 +13,7 @@ export default function TextArea({
 }) {
   return (
     <textarea
-      onChange={()=>setState(true)}
+      onChange={()=>setState?setState(true):null}
       name={name}
       placeholder={placeholder}
       rows={1}
