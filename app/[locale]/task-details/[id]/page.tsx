@@ -10,10 +10,12 @@ export default async function TaskDetails({
 }) {
   const { id } = await params;
   const task = await getTaskDetails({ taskId: id });
-  if(!task?.task){ return}
-  const t = await getTranslations("taskDetails")
+  if (!task?.task) {
+    return;
+  }
+  const t = await getTranslations("taskDetails");
   return (
-    <main className="w-full h-full min-h-screen bg-gradient-to-r from-sky-950 to-slate-800 pt-20 relative">
+    <main className="w-full h-full min-h-screen bg-linear-to-r from-sky-950 to-slate-800 pt-20 relative">
       <PageHeader title={`${t("pageTitle")} : [ ${task?.task?.title} ] `} />
       <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <TaskDetailsForm taskDetails={task?.task} />

@@ -20,9 +20,12 @@ export default function TaskComponent({ task }: { task: TaskType }) {
   
   const toggleDoneHandler = async (taskId: string) => {
     const result = await toggleDoneAction({ taskId, isDone:task?.isDone });
-    if (result.success) {
-      updateTask(result.task);
+    if(!result.success){
+      return
     }
+    
+    updateTask(result.task);
+    
   };
 
   const deleteHandler = async ({ id }: { id: string }) => {

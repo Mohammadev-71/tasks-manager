@@ -30,10 +30,12 @@ export default function Home() {
         setIsLoading(true);
         const listsResult = await getAllLists();
         const tasksResult = await getAllTasks();
-        if (listsResult?.success) {
-          setLists(listsResult?.lists);
+        if (!listsResult.success || !tasksResult.success) {
+          return;
         }
-        if (tasksResult.success) {
+
+        if ("lists" in listsResult && "tasks" in tasksResult) {
+          setLists(listsResult.lists);
           setTasks(tasksResult.tasks);
         }
       } catch (error) {

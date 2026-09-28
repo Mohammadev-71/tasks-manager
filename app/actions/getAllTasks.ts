@@ -14,7 +14,12 @@ export default async function getAllTasks() {
       include: {
         Comments: {
           include: {
-            author: true,
+            author:{
+              select:{
+                name:true,
+                email:true,
+              }
+            },
           },
         },
       },

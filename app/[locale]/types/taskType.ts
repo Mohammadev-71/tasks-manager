@@ -12,7 +12,14 @@ export type TaskType = {
   listId: string;
   Comments: [
     {
+      id:string;
       description: string;
+      authorId:string;
+      author:{
+        name:string;
+        email:string
+        id:string
+      }
     },
   ];
 };
