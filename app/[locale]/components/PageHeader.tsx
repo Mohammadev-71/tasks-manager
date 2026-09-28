@@ -15,7 +15,7 @@ export default function PageHeader({ title }: { title: string }) {
   const t = useTranslations("home");
   const signoutHandler = async () => {
     const result = await signout();
-    if (result?.success && result.message === "signed out successfully") {
+    if (result.success && result.message === "SIGNOUT") {
       redirect("/signin");
     }
   };

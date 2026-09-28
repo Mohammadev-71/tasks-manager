@@ -34,18 +34,17 @@ export default function Signup() {
     redirect("/");
   }
   if (state.message === "UNPROCESSABLE_ENTITY") {
-    alert("this email already exist, please go to signin page");
+    alert(t(`error.${state.message}`));
   }
   return (
-    <main className="flex h-screen w-screen items-center justify-center gap-0 p-8 dark:bg-slate-950 lg:gap-20">
+    <main className="flex h-screen w-screen items-center justify-center gap-0 p-8 bg-slate-100 dark:bg-slate-950 lg:gap-20">
       <div className="hidden h-full items-center justify-center md:flex md:w-1/2">
         <div className="max-w-xl text-center">
           <h1 className="text-4xl font-bold text-slate-800 dark:text-slate-50">
-            Welcome in Task manager
+            {t("title")}
           </h1>
           <p className="mt-4 text-2xl text-slate-600 dark:text-slate-300">
-            Enjoy an unparalleled task management experience with our task
-            manager.
+            {t("subtitle")}
           </p>
         </div>
       </div>
@@ -61,7 +60,7 @@ export default function Signup() {
             {t("title")}
           </h1>
           <h2 className="text-lg text-slate-600 dark:text-slate-300">
-            {`Let's starting to manage your tasks`}
+            {t("cardSubtitle")}
           </h2>
         </div>
 
@@ -86,7 +85,7 @@ export default function Signup() {
               isHidden={
                 (state as ActionResponse)?.message?.[0]?.path?.[0] === "name"
               }
-              error={`error.${(state as ActionResponse)?.message?.[0]}`}
+              error={`error.${(state as ActionResponse)?.message?.[0]?.message}`}
               field="Name"
             />
           )}
@@ -108,7 +107,7 @@ export default function Signup() {
               isHidden={
                 (state as ActionResponse)?.message?.[0]?.path?.[0] === "email"
               }
-              error={`error.${(state as ActionResponse)?.message?.[0]}`}
+              error={`error.${(state as ActionResponse)?.message?.[0]?.message}`}
               field="Email"
             />
           )}
@@ -122,7 +121,7 @@ export default function Signup() {
                 (state as ActionResponse)?.message?.[0]?.path?.[0] ===
                 "password"
               }
-              error={`error.${(state as ActionResponse)?.message?.[0]}`}
+              error={`error.${(state as ActionResponse)?.message?.[0]?.message}`}
               field="Password"
             />
           )}
@@ -130,7 +129,7 @@ export default function Signup() {
             {isPending ? (
               <VscLoading size={25} className="animate-spin" />
             ) : (
-              t("subtitle")
+              t("submitBtn")
             )}
           </button>
 

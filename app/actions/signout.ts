@@ -17,6 +17,6 @@ export default async function signout(){
 
     return({
         success:true,
-        message:"signed out successfully"
+        message:"SIGNOUT"
     })
 }

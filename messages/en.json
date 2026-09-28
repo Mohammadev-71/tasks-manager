@@ -1,7 +1,7 @@
 {
     "signup":{
-        "title":"Welcome to Tasks Manager",
-        "subtitle":"Signup",
+        "title":"Welcome in Task manager",
+        "subtitle":"Enjoy an unparalleled task management experience with our task manager.",
         "placeholder":{
             "name":"Enter your Name",
             "email":"Enter your Email",
@@ -12,14 +12,19 @@
             "EMPTY":"{field} can't be empty",
             "EMAIL":"Invalid email address",
             "TOO_LONG":"{field} It must not exceed 50 characters.",
-            "PASSWORD_INVALID":"Password At least 8 characters, including an uppercase letter, a lowercase letter, a number, and a symbol."
+            "PASSWORD_INVALID":"Password At least 8 characters, including an uppercase letter, a lowercase letter, a number, and a symbol.",
+            "UNPROCESSABLE_ENTITY":"This email already exist, please go to signin page"
         },
         "haveAccount":"Already have account?",
-        "signinLink":"Signin"
+        "signinLink":"Signin",
+        "submitBtn":"Signup",
+        "cardSubtitle":"Let's starting to manage your tasks"
     },
     "signin":{
-        "title":"Welcome Back!",
-        "subtitle":"Sign in to pick up where you left off.",
+        "title":"Less chaos. More progress.",
+        "subtitle":"Organize your tasks, track your progress, and focus on what matters.",
+        "cardTitle":"Welcome Back!",
+        "cardSubtitle":"Sign in to pick up where you left off.",
         "placeholder":{
             "email":"Enter your Email",
             "password":"Enter your Password"
@@ -29,10 +34,12 @@
             "EMPTY":"{field} can't be empty",
             "EMAIL":"Invalid email address",
             "TOO_LONG":"{field} It must not exceed 50 characters.",
-            "PASSWORD_INVALID":"Password At least 8 characters, including an uppercase letter, a lowercase letter, a number, and a symbol."
+            "PASSWORD_INVALID":"Password At least 8 characters, including an uppercase letter, a lowercase letter, a number, and a symbol.",
+            "Invalid email or password":"Invalid email or password"
         },
         "haveAccount":"Don't have account?",
-        "signinLink":"Signup"
+        "signinLink":"Signup",
+        "submitBtn":"Signin"
     },
     "home":{
         "pageTitle":"Home Page",

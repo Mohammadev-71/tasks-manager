@@ -13,6 +13,8 @@ import AddListFrom from "./components/AddListForm";
 import AddListButton from "./components/AddListButton";
 import LoadingLists from "./components/loadingLists";
 import reorderTaskAction from "../actions/reorderTaskAction";
+import { redirect } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
 
 export default function Home() {
   const setLists = useLists((state) => state.setLists);
@@ -22,8 +24,15 @@ export default function Home() {
   const [isAddList, setIsAddList] = useState<boolean>(false);
   const t = useTranslations("home");
   const reorderTask = useTasks((state) => state.reorderTask);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { data: session, isPending } = authClient.useSession();
+    const [isLoading, setIsLoading] = useState<boolean>(isPending||false);
 
+  
+  if(!isPending){
+    if(!session){
+      redirect("/signin")
+    }
+  }
   useEffect(() => {
     const getListsAndTasks = async () => {
       try {
@@ -47,7 +56,6 @@ export default function Home() {
         setIsLoading(false);
       }
     };
-
     getListsAndTasks();
   }, []);
 

@@ -9,6 +9,7 @@ import ErrorMessage from "../components/ErrorMessage";
 import { redirect } from "next/navigation";
 import signinAction from "@/app/actions/signinAction";
 import { Link as IntLink } from "@/i18n/navigation";
+import { VscLoading } from "react-icons/vsc";
 
 const initialState = {
   success: false,
@@ -29,7 +30,12 @@ export default function Signin() {
     initialState,
   );
   const [data, setData] = useState({ email: "", password: "" });
-
+  if (
+    !state.success &&
+    state?.message?.message === "Invalid email or password"
+  ) {
+    alert(t(`error.${state?.message?.message}`));
+  }
   if (state.success) {
     redirect("/");
   }
@@ -39,10 +45,10 @@ export default function Signin() {
       <div className="hidden h-full items-center justify-center md:flex md:w-1/2">
         <div className="max-w-xl text-center">
           <h1 className="text-4xl font-bold text-slate-800 dark:text-slate-50">
-            Less chaos. More progress.
+            {t("title")}
           </h1>
           <p className="mt-4 text-2xl text-slate-600 dark:text-slate-300">
-            Organize your tasks, track your progress, and focus on what matters.
+            {t("subtitle")}
           </p>
         </div>
       </div>
@@ -55,10 +61,10 @@ export default function Signin() {
 
         <div className="flex flex-col items-center justify-center gap-2 text-center">
           <h1 className="text-2xl font-semibold text-slate-800 dark:text-slate-50">
-            {t("title")}
+            {t("cardTitle")}
           </h1>
           <h2 className="text-lg text-slate-600 dark:text-slate-300">
-            {t("subtitle")}
+            {t("cardSubtitle")}
           </h2>
         </div>
 
@@ -83,7 +89,7 @@ export default function Signin() {
               isHidden={
                 (state as ActionResponse)?.message?.[0]?.path?.[0] === "email"
               }
-              error={`error.${(state as ActionResponse)?.message?.[0]}`}
+              error={`error.${(state as ActionResponse)?.message?.[0]?.message}`}
               field="Email"
             />
           )}
@@ -97,13 +103,17 @@ export default function Signin() {
                 (state as ActionResponse)?.message?.[0]?.path?.[0] ===
                 "password"
               }
-              error={`error.${(state as ActionResponse)?.message?.[0]}`}
+              error={`error.${(state as ActionResponse)?.message?.[0]?.message}`}
               field="Password"
             />
           )}
 
-          <button className="m-4 rounded-full bg-sky-700 p-3 text-lg text-white transition-colors duration-200 hover:bg-sky-800 dark:bg-sky-600 dark:hover:bg-sky-500">
-            Signin
+          <button className="m-4 flex items-center justify-center rounded-full bg-sky-700 p-3 text-lg text-white transition-colors duration-200 hover:bg-sky-800 dark:bg-sky-600 dark:hover:bg-sky-500">
+            {isPending ? (
+              <VscLoading size={25} className="animate-spin" />
+            ) : (
+              t("submitBtn")
+            )}
           </button>
 
           <div className="flex w-full items-center justify-center gap-2">
