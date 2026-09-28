@@ -1,11 +1,11 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { TaskDetailsType } from "@/app/[locale]/types/taskDetailsType";
+import { TaskType } from "../[locale]/types/taskType";
 import authentication from "./authentication";
 
 export type EditTaskActionResult =
-  | { success: true; task: TaskDetailsType }
+  | { success: true; task: TaskType }
   | { success: false; message: string };
 
 export default async function editTaskAction(
@@ -57,7 +57,7 @@ export default async function editTaskAction(
 
     return {
       success: true,
-      task: result as TaskDetailsType,
+      task: result as TaskType,
     };
   } catch (error) {
     console.log(error);

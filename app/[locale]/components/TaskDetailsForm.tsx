@@ -5,7 +5,7 @@ import { GrTextAlignFull } from "react-icons/gr";
 import { TfiCommentAlt } from "react-icons/tfi";
 import { useActionState, useEffect, useState } from "react";
 import editTaskAction, { EditTaskActionResult } from "@/app/actions/editTaskAction";
-import { TaskDetailsType } from "../types/taskDetailsType";
+import { TaskType } from "../types/taskType";
 import toggleDoneAction from "@/app/actions/toggleDoneAction";
 import TextArea from "./TextArea";
 import { VscLoading } from "react-icons/vsc";
@@ -15,11 +15,11 @@ import { Link as IntLik } from "@/i18n/navigation";
 export default function TaskDetailsForm({
   taskDetails,
 }: {
-  taskDetails: TaskDetailsType;
+  taskDetails: TaskType;
 }) {
   const [isEditingDesc, setIsEditingDesc] = useState<boolean>(false);
   const [isEditingComment, setIsEditingComment] = useState<boolean>(false);
-  const [task, setTask] = useState<TaskDetailsType>(taskDetails);
+  const [task, setTask] = useState<TaskType>(taskDetails);
   const t = useTranslations("taskDetails");
   const [state, actionForm, isPending] = useActionState<EditTaskActionResult, FormData>(
     editTaskAction.bind(null, task.id),

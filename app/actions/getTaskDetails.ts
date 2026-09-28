@@ -1,12 +1,15 @@
 import { prisma } from "@/lib/prisma";
 import authentication from "./authentication";
-import { TaskDetailsType } from "@/app/[locale]/types/taskDetailsType";
-
+import { TaskType } from "../[locale]/types/taskType";
 export type GetTaskDetailsResult =
-  | { success: true; task: TaskDetailsType | null }
+  | { success: true; task: TaskType | null }
   | { success: false; message: string };
 
-export default async function getTaskDetails({ taskId }: { taskId: string }): Promise<GetTaskDetailsResult> {
+export default async function getTaskDetails({
+  taskId,
+}: {
+  taskId: string;
+}): Promise<GetTaskDetailsResult> {
   const auth = await authentication();
   if (!auth.success) {
     return auth;
@@ -33,7 +36,7 @@ export default async function getTaskDetails({ taskId }: { taskId: string }): Pr
 
     return {
       success: true,
-      task: taskDetails as TaskDetailsType | null,
+      task: taskDetails as TaskType | null,
     };
   } catch (error) {
     console.log(error);
