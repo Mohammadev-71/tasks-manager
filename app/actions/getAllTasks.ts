@@ -11,14 +11,19 @@ export default async function getAllTasks() {
   }
   try {
     const tasks = await prisma.task.findMany({
+      where: {
+        list: {
+          OR: [{ isPrivate: false }, { creatorId: auth.user.id }],
+        },
+      },
       include: {
         Comments: {
           include: {
-            author:{
-              select:{
-                name:true,
-                email:true,
-              }
+            author: {
+              select: {
+                name: true,
+                email: true,
+              },
             },
           },
         },
