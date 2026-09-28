@@ -6,7 +6,7 @@ import ThemeSwitcher from "../components/ThemeSwitcher";
 import PasswordField from "../components/PasswordField";
 import { useActionState, useState } from "react";
 import ErrorMessage from "../components/ErrorMessage";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import signinAction from "@/app/actions/signinAction";
 import { Link as IntLink } from "@/i18n/navigation";
 import { VscLoading } from "react-icons/vsc";
@@ -16,31 +16,37 @@ const initialState = {
   message: "",
 };
 
+type ActionIssue = {
+  message: string;
+  path?: string[];
+};
+
 type ActionResponse = {
-  message?: {
-    message?:
-    | { message: string; path?: string[] }[]
-    | { message: string }; 
-    path: string[];
-  }[];
+  success: boolean;
+  message?: string | ActionIssue[];
 };
 
 export default function Signin() {
   const t = useTranslations("signin");
-  const [state, formAction, isPending] = useActionState(
-    signinAction,
-    initialState,
-  );
+  const router = useRouter();
+  const [state, formAction, isPending] = useActionState<
+    ActionResponse,
+    FormData
+  >(signinAction, initialState);
   const [data, setData] = useState({ email: "", password: "" });
-  
-  if (
-    !state.success &&
-    state?.message?.message=== "Invalid email or password"
-  ) {
-    alert(t("error.Invalid email or password"));
-  }
+
+  const issues = Array.isArray(state.message) ? state.message : [];
+  const emailIssue = issues.find((issue) => issue.path?.[0] === "email");
+  const passwordIssue = issues.find((issue) => issue.path?.[0] === "password");
+  const authMessage = typeof state.message === "string" ? state.message : "";
+
   if (state.success) {
-    redirect("/");
+    router.push("/");
+    return null;
+  }
+
+  if (authMessage === "Invalid email or password") {
+    alert(t("error.Invalid email or password"));
   }
 
   return (
@@ -88,11 +94,9 @@ export default function Signin() {
 
           {!state.success && (
             <ErrorMessage
-              intl="signup"
-              isHidden={
-                (state as ActionResponse)?.message?.[0]?.path?.[0] === "email"
-              }
-              error={`error.${(state as ActionResponse)?.message?.[0]?.message}`}
+              intl="signin"
+              isHidden={Boolean(emailIssue)}
+              error={emailIssue ? `error.${emailIssue.message}` : ""}
               field="Email"
             />
           )}
@@ -101,12 +105,9 @@ export default function Signin() {
 
           {!state.success && (
             <ErrorMessage
-              intl="signup"
-              isHidden={
-                (state as ActionResponse)?.message?.[0]?.path?.[0] ===
-                "password"
-              }
-              error={`error.${(state as ActionResponse)?.message?.[0]?.message}`}
+              intl="signin"
+              isHidden={Boolean(passwordIssue)}
+              error={passwordIssue ? `error.${passwordIssue.message}` : ""}
               field="Password"
             />
           )}
